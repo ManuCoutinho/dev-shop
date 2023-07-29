@@ -14,8 +14,7 @@ export class StoreService {
 
   listProducts(limit='12', sort='desc', category?: string): Observable<Product[]>{
     return this.httpClient.get<Product[]>(
-      `${STORE_BASE_URL}/products${category ? '/category/' + category : ''}
-      ?sort=${sort}&limit=${limit}`);
+      `${STORE_BASE_URL}/products${category ? '/category/' + category : ''}?sort=${sort}&limit=${limit}`);
   }
 
   listCategories():Observable<string[]>{

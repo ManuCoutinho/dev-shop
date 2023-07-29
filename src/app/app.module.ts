@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -24,6 +26,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import { FiltersComponent } from './pages/home/components/filters/filters.component';
 import { ProductsHeaderComponent } from './pages/home/components/products-header/products-header.component';
 import { ProductsBoxComponent } from './pages/home/components/products-box/products-box.component';
+
 import { CartService } from './services/cart.service';
 import { StoreService } from './services/store.service';
 
@@ -54,7 +57,8 @@ import { StoreService } from './services/store.service';
     MatSnackBarModule,
     MatSidenavModule,
     MatTableModule,
-    MatToolbarModule
+    MatToolbarModule,
+    HttpClientModule
   ],
   providers: [CartService, StoreService],
   bootstrap: [AppComponent]

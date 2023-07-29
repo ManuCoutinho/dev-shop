@@ -3,10 +3,14 @@
     <img
       [src]="product.image"
       [attr.alt]="product.description"
+      [ngClass]="{ 'h-[220px]': !fullWidthMode, 'h-[360px]': fullWidthMode }"
       class="mb-1 mx-auto"
     />
   </div>
-  <div class="w-full" [ngClass]="{ 'px-8 flex flex-col justify-between': fullWidthMode }">
+  <div
+    class="w-full"
+    [ngClass]="{ 'px-8 flex flex-col justify-between': fullWidthMode }"
+  >
     <div>
       <h5>{{ product.category }}</h5>
       <p

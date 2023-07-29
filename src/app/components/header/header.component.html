@@ -23,7 +23,9 @@
 
     <div class="flex justify-between py-3 font-light">
       Total:
-      <span class="font-bold not-italic"> {{ '100.00' | currency : 'BRL' }} </span>
+      <span class="font-bold not-italic">
+        {{ getTotal(cart.items) | currency : 'BRL' }}
+      </span>
     </div>
 
     <div class="pt-3 flex justify-between">
