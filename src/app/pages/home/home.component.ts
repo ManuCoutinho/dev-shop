@@ -11,6 +11,7 @@ const  ROWS_HEIGHT: { [id:number]: number } = { 1: 400, 3: 335, 4:350 };
 export class HomeComponent implements OnInit, OnDestroy {
   cols = 3;
   rowHeight: number = ROWS_HEIGHT[this.cols];
+  products: Array<Product> | undefined
   count = '12';
   sort = 'desc';
   category: string | undefined;
@@ -35,7 +36,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.getProducts();
   }
 
-  onShowCategory(newCategory: string): void {};
+  onShowCategory(newCategory: string): void {
+    this.category = newCategory;
+    this.getProducts();
+  };
 
   getProducts():void {};
 

@@ -24,6 +24,8 @@ import { CartComponent } from './pages/cart/cart.component';
 import { FiltersComponent } from './pages/home/components/filters/filters.component';
 import { ProductsHeaderComponent } from './pages/home/components/products-header/products-header.component';
 import { ProductsBoxComponent } from './pages/home/components/products-box/products-box.component';
+import { CartService } from './services/cart.service';
+import { StoreService } from './services/store.service';
 
 
 @NgModule({
@@ -54,7 +56,7 @@ import { ProductsBoxComponent } from './pages/home/components/products-box/produ
     MatTableModule,
     MatToolbarModule
   ],
-  providers: [],
+  providers: [CartService, StoreService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

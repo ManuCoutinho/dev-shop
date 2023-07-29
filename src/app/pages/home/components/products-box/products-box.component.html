@@ -1,1 +1,29 @@
-<p>products-box works!</p>
+<mat-card *ngIf="product" [ngClass]="{ 'text-center': !fullWidthMode }">
+  <div [ngClass]="{ flex: fullWidthMode }">
+    <img
+      [src]="product.image"
+      [attr.alt]="product.description"
+      class="mb-1 mx-auto"
+    />
+  </div>
+  <div class="w-full" [ngClass]="{ 'px-8 flex flex-col justify-between': fullWidthMode }">
+    <div>
+      <h5>{{ product.category }}</h5>
+      <p
+        class="truncate hover:whitespace-normal"
+        [ngClass]="{truncate: !fullWidthMode}"
+      >
+        {{ product.title}}
+      </p>
+      <p *ngIf="fullWidthMode"> {{ product.description }} </p>
+    </div>
+    <div>
+      <div class="flex justify-between">
+        <span class="text-red-400"> {{ product.price | currency: 'BRL' }} </span>
+        <button (click)="onAddToCart()">
+          <mat-icon class="text-gray-500">shopping_cart</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</mat-card>

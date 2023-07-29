@@ -11,11 +11,21 @@
       (itemsCountChange)="onItemsCountChange($event)"
       (sortChange)="onSortChange($event)"
     ></app-products-header>
-    <mat-grid-list gutterSize="16" [cols]="cols" [rowHeight]="rowHeight">
-      <mat-grid-tile>
-        <div
+    <mat-grid-list
+      *ngIf="products && products.length"
+      gutterSize="16"
+      [cols]="cols"
+      [rowHeight]="rowHeight"
+    >
+      <mat-grid-tile *ngFor="let product of products">
+        <!-- <div
           class="w-full"
-        ></div>
+          (addToCart)="onAddToCart($event)"
+          app-products-box
+          [product]="product"
+          [fullWidthMode]="cols === 1"
+          >
+        </div>-->
       </mat-grid-tile>
     </mat-grid-list>
   </mat-drawer-content>
