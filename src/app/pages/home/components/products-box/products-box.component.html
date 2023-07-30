@@ -12,7 +12,10 @@
     [ngClass]="{ 'px-8 flex flex-col justify-between': fullWidthMode }"
   >
     <div>
-      <h5>{{ product.category }}</h5>
+      <h5
+        class="text-xs font-semibold text-neutral-500">
+          {{ product.category | titlecase }}
+      </h5>
       <p
         class="truncate hover:whitespace-normal"
         [ngClass]="{truncate: !fullWidthMode}"

@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Cart, CartItem } from 'src/app/models/cart.model';
 import { CartService } from 'src/app/services/cart.service';
 
@@ -6,13 +7,15 @@ import { CartService } from 'src/app/services/cart.service';
   selector: 'app-header',
   templateUrl: './header.component.html'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
   private _cart: Cart = { items: [] };
   itemsQuantity = 0;
+  cartSubscription: Subscription | undefined;
+
 
   constructor(private _cartService: CartService) {}
 
-
+  @Input() quantity: 'item' | 'items' = 'item';
   @Input()
     get cart(): Cart {
       return this._cart
@@ -24,6 +27,7 @@ export class HeaderComponent {
       this.itemsQuantity = cart.items
       .map(({quantity}) => quantity)
       .reduce((prev, acc) => prev + acc, 0);
+      this.quantity = cart.items.length < 2 ? 'item' : 'items'
     }
 
 
@@ -34,4 +38,17 @@ export class HeaderComponent {
   onClearCart():void {
     this._cartService.clearCart();
   }
+
+    ngOnInit(): void {
+    this.cartSubscription = this._cartService
+      .cart.subscribe((_cart: Cart) => this.cart = _cart);
+  }
+
+
+  ngOnDestroy(): void {
+      if(this.cartSubscription) {
+      this.cartSubscription.unsubscribe();
+    }
+  }
+
 }
