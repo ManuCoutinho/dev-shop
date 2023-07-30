@@ -8,16 +8,14 @@ import { StoreService } from 'src/app/services/store.service';
 })
 export class FiltersComponent implements OnInit, OnDestroy {
   @Output() showCategory = new EventEmitter<string>();
-  categories: string[] | undefined;
+  categories: string[] = ['all'];
   categoriesSubscription: Subscription | undefined;
 
   constructor(private _storeService: StoreService) {}
   ngOnInit(): void {
     this.categoriesSubscription = this._storeService
       .listCategories()
-      .subscribe((response: string[]) => {
-        this.categories = response;
-      });
+      .subscribe((response: string[]) => this.categories.push(...response));
   }
 
   onShowCategory(category: string): void {

@@ -9,22 +9,25 @@ import { CartService } from 'src/app/services/cart.service';
 export class HeaderComponent {
   private _cart: Cart = { items: [] };
   itemsQuantity = 0;
+
   constructor(private _cartService: CartService) {}
 
-  @Input() get cart(): Cart {
-    return this._cart
-  }
 
-  set cart(cart: Cart){
-    this._cart = cart;
+  @Input()
+    get cart(): Cart {
+      return this._cart
+    }
 
-    this.itemsQuantity = cart.items
-        .map(({quantity}) => quantity)
-        .reduce((prev, acc) => prev + acc, 0);
-  }
+    set cart(cart: Cart){
+      this._cart = cart;
+
+      this.itemsQuantity = cart.items
+      .map(({quantity}) => quantity)
+      .reduce((prev, acc) => prev + acc, 0);
+    }
 
 
-  getTotal(items: CartItem[]):number {
+    getTotal(items: CartItem[]):number {
     return this._cartService.getTotal(items);
   }
 
