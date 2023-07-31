@@ -23,7 +23,7 @@ export class CartService {
       }
 
     this.cart.next({ items });
-    this._snackBar.open('1 item added to cart.', 'Ok', { duration: 3000 });
+    this._snackBar.open('1 item adicionado do carrinho.', 'Ok', { duration: 3000 });
   }
 
   removeFromCart(item: CartItem, updateCart = true): CartItem[] {
@@ -32,7 +32,7 @@ export class CartService {
 
       if(updateCart) {
         this.cart.next({ items: filteredItems });
-        this._snackBar.open('1 item removed from cart', 'Ok', { duration: 3000 });
+        this._snackBar.open('1 item removido do carrinho', 'Ok', { duration: 3000 });
       }
 
       return filteredItems;
@@ -56,12 +56,12 @@ export class CartService {
     }
 
     this.cart.next({ items: filteredItems });
-    this._snackBar.open('1 item removed from cart', 'Ok', { duration: 3000 });
+    this._snackBar.open('1 item removido do carrinho', 'Ok', { duration: 3000 });
   }
 
   clearCart():void {
     this.cart.next({ items: [] });
-    this._snackBar.open('Cart is cleared', 'Ok', { duration: 3000 });
+    this._snackBar.open('Carrinho foi esvaziado', 'Ok', { duration: 3000 });
   }
 
   getTotal(items: CartItem[]): number {

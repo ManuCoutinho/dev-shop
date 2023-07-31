@@ -1,36 +1,32 @@
-<mat-card *ngIf="product" [ngClass]="{ 'text-center': !fullWidthMode }">
-  <div [ngClass]="{ flex: fullWidthMode }">
-    <img
-      [src]="product.image"
-      [attr.alt]="product.description"
-      [ngClass]="{ 'h-[220px]': !fullWidthMode, 'h-[360px]': fullWidthMode }"
-      class="mb-1 mx-auto"
-    />
-  </div>
-  <div
-    class="w-full"
-    [ngClass]="{ 'px-8 flex flex-col justify-between': fullWidthMode }"
-  >
-    <div>
-      <h5
-        class="text-xs font-semibold text-neutral-500">
-          {{ product.category | titlecase }}
-      </h5>
-      <p
-        class="truncate hover:whitespace-normal"
-        [ngClass]="{truncate: !fullWidthMode}"
-      >
-        {{ product.title}}
-      </p>
-      <p *ngIf="fullWidthMode"> {{ product.description }} </p>
+<mat-card *ngIf="product" [ngClass]="{ 'text-center': !fullWidthMode }" class="mat-elevation-z6 p-4">
+  <img
+    [src]="product.image"
+    [attr.alt]="product.description"
+    [ngClass]="{ 'h-[220px]': !fullWidthMode, 'h-[300px]': fullWidthMode }"
+    class="w-full object-contain"
+  />
+
+  <mat-card-content>
+    <mat-card-subtitle>
+      {{ product.category | titlecase }}
+    </mat-card-subtitle>
+    <p
+      class="hover:whitespace-normal pb-4 transition-all ease-in-out"
+      [ngClass]="{truncate: !fullWidthMode}"
+    >
+      {{ product.title}}
+    </p>
+    <p *ngIf="fullWidthMode"> {{ product.description }} </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <div class="flex justify-between w-full">
+      <span class="text-indigo-500">
+        {{ product.price | currency: 'BRL' }}
+      </span>
+      <button (click)="onAddToCart()" mat-mini-fab color="primary">
+        <mat-icon class="text-neutral-50">shopping_cart</mat-icon>
+      </button>
     </div>
-    <div>
-      <div class="flex justify-between">
-        <span class="text-red-400"> {{ product.price | currency: 'BRL' }} </span>
-        <button (click)="onAddToCart()">
-          <mat-icon class="text-gray-500">shopping_cart</mat-icon>
-        </button>
-      </div>
-    </div>
-  </div>
+  </mat-card-actions>
+
 </mat-card>
