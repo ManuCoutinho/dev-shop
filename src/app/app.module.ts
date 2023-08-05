@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,7 +15,6 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -27,9 +26,9 @@ import { FiltersComponent } from './pages/home/components/filters/filters.compon
 import { ProductsHeaderComponent } from './pages/home/components/products-header/products-header.component';
 import { ProductsBoxComponent } from './pages/home/components/products-box/products-box.component';
 
-import { CartService } from './services/cart.service';
+import { CacheInterceptor } from './shared/interceptor.service';
 import { StoreService } from './services/store.service';
-
+import { CartService } from './services/cart.service';
 
 @NgModule({
   declarations: [
@@ -53,14 +52,16 @@ import { StoreService } from './services/store.service';
     MatIconModule,
     MatListModule,
     MatMenuModule,
-    MatSidenavModule,
     MatSnackBarModule,
-    MatSidenavModule,
     MatTableModule,
     MatToolbarModule,
     HttpClientModule
   ],
-  providers: [CartService, StoreService],
+  providers: [StoreService, CartService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: CacheInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

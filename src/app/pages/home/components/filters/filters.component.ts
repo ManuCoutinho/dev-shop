@@ -10,6 +10,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
   @Output() showCategory = new EventEmitter<string>();
   categories: string[] = ['all'];
   categoriesSubscription: Subscription | undefined;
+  category = 'all'
 
   constructor(private _storeService: StoreService) {}
   ngOnInit(): void {
@@ -20,6 +21,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
 
   onShowCategory(category: string): void {
     this.showCategory.next(category);
+    this.category = category
   }
 
   ngOnDestroy(): void {

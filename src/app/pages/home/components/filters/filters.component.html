@@ -1,17 +1,15 @@
-<mat-expansion-panel *ngIf="categories">
-  <mat-expansion-panel-header>
-    <mat-panel-title>CATEGORIAS</mat-panel-title>
-  </mat-expansion-panel-header>
-  <mat-selection-list [multiple]="false">
-    <mat-list-option
-      color="primary"
+<div *ngIf="categories">
+  <button mat-button [matMenuTriggerFor]="filterCategories">
+    <mat-icon>expand_more</mat-icon>
+    Categoria: {{ category | titlecase}}
+  </button>
+  <mat-menu #filterCategories="matMenu">
+    <button
       *ngFor="let category of categories"
-      [value]="category"
+      mat-menu-item
       (click)="onShowCategory(category)"
-    >
-      <button>
-        {{ category | titlecase }}
-      </button>
-    </mat-list-option>
-  </mat-selection-list>
-</mat-expansion-panel>
+      >
+      {{ category | titlecase }}
+    </button>
+  </mat-menu>
+</div>

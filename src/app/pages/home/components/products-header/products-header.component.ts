@@ -8,10 +8,10 @@ export class ProductsHeaderComponent {
   @Output() columnsCountChange = new EventEmitter<number>();
   @Output() itemsCountChange = new EventEmitter<number>();
   @Output() sortChange = new EventEmitter<string>();
+  @Output() showCategory = new EventEmitter<string>();
   itemsShowCount = 12;
   sort = 'desc';
-
-  constructor() {}
+  category = 'all'
 
   onColumnUpdated(colsNum: number): void {
     this.columnsCountChange.emit(colsNum);
@@ -27,4 +27,8 @@ export class ProductsHeaderComponent {
     this.sort = newSort;
   }
 
+  onShowCategory(newCategory: string):void {
+    this.showCategory.emit(newCategory);
+    this.category = newCategory;
+  }
 }

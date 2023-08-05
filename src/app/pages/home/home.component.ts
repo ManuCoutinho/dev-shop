@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Product } from 'src/app/models/product.model';
 import { CartService } from 'src/app/services/cart.service';
@@ -10,7 +10,7 @@ const  ROWS_HEIGHT: { [id:number]: number } = { 1: 500, 3: 380, 4:400 };
   selector: 'app-home',
   templateUrl: './home.component.html'
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy, OnChanges {
   cols = 3;
   rowHeight: number = ROWS_HEIGHT[this.cols];
   products: Array<Product> | undefined
@@ -71,5 +71,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-
+  ngOnChanges(changes: SimpleChanges): void {
+      console.log('🦄', changes)
+  }
 }

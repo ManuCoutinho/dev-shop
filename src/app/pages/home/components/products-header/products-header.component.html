@@ -1,23 +1,23 @@
 <mat-card class="mb-4 p-4">
-  <div class="flex justify-between">
+  <div class="w-full flex justify-between px-4">
+    <app-filters (showCategory)="onShowCategory($event)"/>
+   <div class="flex items-center gap-4">
     <div>
       <button mat-button [matMenuTriggerFor]="sortByMenu">
         Ordenar por {{ sort }}
         <mat-icon>expand_more</mat-icon>
       </button>
       <mat-menu #sortByMenu="matMenu">
-      <div class="flex flex-col gap-3 p-2">
-        <button mat-flat-button color="primary" (click)="onSortUpdated('desc')">
+        <button mat-menu-item (click)="onSortUpdated('desc')">
           <mat-icon>arrow_downward</mat-icon>
           Z-a
         </button>
-        <button mat-flat-button color="primary" (click)="onSortUpdated('asc')">
+        <button mat-menu-item (click)="onSortUpdated('asc')">
           <mat-icon>arrow_upward</mat-icon>
           A-z
         </button>
-      </div>
       </mat-menu>
-      </div>
+    </div>
     <div class="flex items-center gap-4">
       <div>
         <button mat-button [matMenuTriggerFor]="menu">
@@ -40,5 +40,6 @@
         <mat-icon>view_comfy</mat-icon>
       </button>
     </div>
+   </div>
   </div>
 </mat-card>
