@@ -4,7 +4,6 @@ const setEnv = () => {
 // Configure Angular `environment.ts` file path
   const targetPath = './src/environments/environment.ts';
 // Load node modules
-  const appVersion = require('../../../package.json').version;
   require('dotenv').config({
     path: 'src/environments/.env'
   });
@@ -13,7 +12,6 @@ const setEnv = () => {
   baseUrl: '${process.env['BASE_URL']}',
   paymentUrl: '${process.env['PAYMENT_URL']}',
   secretStripe: '${process.env['SECRET_STRIPE']}'
-  appVersion: '${appVersion}',
   production: true,
 };
 `;
