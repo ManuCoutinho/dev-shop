@@ -11,7 +11,7 @@ const setEnv = () => {
   const envConfigFile = `export const environment = {
   baseUrl: '${process.env['BASE_URL']}',
   paymentUrl: '${process.env['PAYMENT_URL']}',
-  secretStripe: '${process.env['SECRET_STRIPE']}'
+  secretStripe: '${process.env['SECRET_STRIPE']}',
   production: true,
 };
 `;
