@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { Cart, CartItem } from 'src/app/models/cart.model';
 import { CartService } from 'src/app/services/cart.service';
-
+import { loadStripe, } from '@stripe/stripe-js';
+import { environment } from 'src/environments/environment.stage';
 
 @Component({
   selector: 'app-cart',
@@ -44,15 +45,15 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   onCheckout(): void {
-    // this._http.post('http://localhost:4242/checkout', {
-    //   items: this.cart.items
-    // })
-    // .subscribe(async (res: any) => {
-    //   let stripe = await loadStripe('your token');
-    //   stripe?.redirectToCheckout({
-    //     sessionId: res.id
-    //   });
-    // });
+    this._http.post(environment.paymentUrl, {
+      items: this.cart.items
+    })
+    .subscribe(async (res: any) => {
+      const stripe = await loadStripe(environment.secretStripe);
+      stripe?.redirectToCheckout({
+        sessionId: res.id
+      });
+    });
   }
 
   ngOnInit(): void {

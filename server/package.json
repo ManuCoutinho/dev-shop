@@ -1,0 +1,33 @@
+{
+  "name": "server-dev-shop",
+  "version": "0.0.1",
+  "description": "Server for Dev Shop app",
+  "type": "commonjs",
+  "main": "server.ts",
+  "engines": {
+    "node": ">=18.16.0",
+    "npm": ">=9.5.1"
+  },
+  "scripts": {
+    "dev": "node --watch src/server.mjs",
+    "start": "node src/server.mjs",
+    "lint": "eslint --ext --fix .js src"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "stripe": "^10.7.0"
+  },
+  "keywords": [
+    "express",
+    "angular",
+    "stripe"
+  ],
+  "author": "Emanuela Coutinho",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ManuCoutinho/dv-shop"
+  }
+}
