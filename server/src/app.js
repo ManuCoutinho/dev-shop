@@ -31,8 +31,8 @@ app.post('/checkout', async (req, res, next) => {
         quantity: item.quantity,
       })),
       mode: 'payment',
-      success_url: `${process.env.BASE_URL}/success.html`,
-      cancel_url:`${process.env.BASE_URL}/cancel.html`,
+      success_url: `${process.env.SERVER_URL}/success.html`,
+      cancel_url:`${process.env.SERVER_URL}/cancel.html`,
     })
 
 
