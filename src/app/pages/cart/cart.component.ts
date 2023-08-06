@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { Cart, CartItem } from 'src/app/models/cart.model';
 import { CartService } from 'src/app/services/cart.service';
 import { loadStripe, } from '@stripe/stripe-js';
-import { environment } from 'src/environments/environment.stage';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-cart',
